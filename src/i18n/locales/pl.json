@@ -730,7 +730,7 @@
               "info": "Włącz animowane okładki w nagłówku strony albumu."
             },
             "fullscreen": {
-              "label": "Odtwarzacz pełnoekranowy",
+              "label": "Duży odtwarzacz",
               "info": "Włącz animowane okładki w odtwarzaczu pełnoekranowym."
             },
             "playerBar": {
@@ -738,7 +738,8 @@
               "info": "Włącz animowane okładki dla aktualnej piosenki w dolnym pasku odtwarzacza."
             },
             "drawer": {
-              "label": "Szuflada Kolejki/Tekstu"
+              "label": "Szuflada Kolejki/Tekstu",
+              "info": "Włącz animowane okładki dla aktualnej piosenki w szufladzie kolejki/tekstu."
             }
           }
         }
