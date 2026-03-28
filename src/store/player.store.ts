@@ -1356,3 +1356,21 @@ export const useIsArtistPlaying = (artistId: string) => {
     isArtistPlaying: isPlaying,
   }
 }
+
+export const useIsSingleSongPlaying = (songId: string) => {
+  const playingSongId = usePlayerStore((state) => state.songlist.currentSong.id)
+  const { source } = usePlayerStore(
+    (store) => store.playerState.playbackContext,
+  )
+  const isPlayerPlaying = usePlayerStore((state) => state.playerState.isPlaying)
+
+  if (source) return { isSongPlaying: false }
+
+  const isSongActive = playingSongId === songId
+  const isSongPlaying = isSongActive && isPlayerPlaying
+
+  return {
+    isSongActive,
+    isSongPlaying,
+  }
+}
