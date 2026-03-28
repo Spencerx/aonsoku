@@ -73,6 +73,7 @@
     "refresh": "Refresh playlists",
     "buttons": {
       "play": "Play {{name}}",
+      "pause": "Pause {{name}}",
       "shuffle": "Play {{name}} in shuffle mode",
       "options": "More options for {{name}}"
     },

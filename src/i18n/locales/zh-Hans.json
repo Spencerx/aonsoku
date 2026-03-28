@@ -71,6 +71,7 @@
     "refresh": "刷新播放列表",
     "buttons": {
       "play": "播放 {{name}}",
+      "pause": "暂停 {{name}}",
       "shuffle": "随机播放 {{name}}",
       "options": "{{name}} 的更多选项"
     },

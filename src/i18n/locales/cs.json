@@ -73,6 +73,7 @@
     "refresh": "Obnovit playlisty",
     "buttons": {
       "play": "Přehrát {{name}}",
+      "pause": "Pozastavit {{name}}",
       "shuffle": "Přehrát {{name}} v náhodném pořadí",
       "options": "Více možností pro {{name}}"
     },

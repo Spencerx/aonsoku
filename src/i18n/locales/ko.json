@@ -41,6 +41,7 @@
   "playlist": {
     "buttons": {
       "play": "{{name}} 재생",
+      "pause": "{{name}} 일시 정지",
       "shuffle": "무작위 모드로 {{name}} 재생",
       "options": "{{name}} 옵션 더 보기"
     },

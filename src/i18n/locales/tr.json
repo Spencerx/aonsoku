@@ -72,6 +72,7 @@
     "refresh": "Listeleri yenile",
     "buttons": {
       "play": "{{name}} çal",
+      "pause": "{{name}} duraklat",
       "shuffle": "{{name}} listesini karıştır",
       "options": "{{name}} için diğer seçenekler"
     },

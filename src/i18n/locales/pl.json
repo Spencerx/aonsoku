@@ -222,6 +222,7 @@
     "refresh": "Odśwież playlisty",
     "buttons": {
       "play": "Odtwórz {{name}}",
+      "pause": "Wstrzymaj {{name}}",
       "shuffle": "Odtwórz {{name}} w trybie losowym",
       "options": "Więcej opcji dla {{name}}"
     },

@@ -5,6 +5,7 @@ import {
   usePlayerContext,
   usePlayerStore,
 } from '@/store/player.store'
+import { PlaybackSource } from '@/types/playerContext'
 import { PlaylistWithEntries } from '@/types/responses/playlist'
 import { PlaylistOptions } from './options'
 
@@ -14,64 +15,66 @@ interface PlaylistButtonsProps {
 
 export function PlaylistButtons({ playlist }: PlaylistButtonsProps) {
   const { t } = useTranslation()
-  const { setSongList, togglePlayPause } = usePlayerActions()
+  const { setSongList, togglePlayPause, toggleShuffle } = usePlayerActions()
   const { source } = usePlayerContext()
   const isPlaying = usePlayerStore((state) => state.playerState.isPlaying)
   const isShuffleActive = usePlayerStore(
     (state) => state.playerState.isShuffleActive,
   )
 
+  const isPlaylistActive =
+    (source && source.type === 'playlist' && source.id === playlist.id) ?? false
+  const isPlaylistPlaying = isPlaylistActive && isPlaying
+
   const buttonsTooltips = {
-    play: t('playlist.buttons.play', { name: playlist.name }),
+    play: () => {
+      return isPlaylistPlaying
+        ? t('playlist.buttons.pause', { name: playlist.name })
+        : t('playlist.buttons.play', { name: playlist.name })
+    },
     shuffle: t('playlist.buttons.shuffle', { name: playlist.name }),
     options: t('playlist.buttons.options', { name: playlist.name }),
     pause: t('playlist.buttons.pause', { name: playlist.name }),
   }
 
-  const isPlaylistActive =
-    source?.type === 'playlist' && source.id === playlist.id
-  const isPlaylistPlaying = isPlaylistActive && isPlaying
+  const playbackSource: PlaybackSource = {
+    id: playlist.id,
+    name: playlist.name,
+    type: 'playlist',
+  }
+
+  function handlePlayButton() {
+    if (isPlaylistActive) {
+      togglePlayPause()
+    } else {
+      setSongList(playlist.entry, 0, false, playbackSource)
+    }
+  }
+
+  function handleShuffleButton() {
+    if (isPlaylistActive) {
+      toggleShuffle()
+    } else {
+      setSongList(playlist.entry, 0, true, playbackSource)
+    }
+  }
 
   return (
     <Actions.Container>
-      {isPlaylistPlaying && (
-        <Actions.Button
-          tooltip={buttonsTooltips.pause}
-          buttonStyle="primary"
-          onClick={togglePlayPause}
-          disabled={!playlist.entry}
-        >
-          <Actions.PauseIcon />
-        </Actions.Button>
-      )}
-      {!isPlaylistPlaying && (
-        <Actions.Button
-          tooltip={buttonsTooltips.play}
-          buttonStyle="primary"
-          onClick={() =>
-            setSongList(playlist.entry, 0, false, {
-              id: playlist.id,
-              name: playlist.name,
-              type: 'playlist',
-            })
-          }
-          disabled={!playlist.entry}
-        >
-          <Actions.PlayIcon />
-        </Actions.Button>
-      )}
+      <Actions.Button
+        tooltip={buttonsTooltips.play()}
+        buttonStyle="primary"
+        onClick={handlePlayButton}
+        disabled={!playlist.entry}
+      >
+        {isPlaylistPlaying ? <Actions.PauseIcon /> : <Actions.PlayIcon />}
+      </Actions.Button>
 
       <Actions.Button
         tooltip={buttonsTooltips.shuffle}
-        onClick={() =>
-          setSongList(playlist.entry, 0, true, {
-            id: playlist.id,
-            name: playlist.name,
-            type: 'playlist',
-          })
-        }
+        onClick={handleShuffleButton}
         disabled={!playlist.entry}
-        isActive={isPlaylistPlaying && isShuffleActive}
+        isActive={isPlaylistActive && isShuffleActive}
       >
         <Actions.ShuffleIcon />
       </Actions.Button>

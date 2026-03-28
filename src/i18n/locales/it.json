@@ -80,7 +80,8 @@
     "buttons": {
       "shuffle": "Riproduzione casuale di {{name}}",
       "options": "Più opzioni per {{name}}",
-      "play": "Riproduci {{name}}"
+      "play": "Riproduci {{name}}",
+      "pause": "Pausa {{name}}"
     },
     "noSongList": "Questa playlist non contiene brani!"
   },

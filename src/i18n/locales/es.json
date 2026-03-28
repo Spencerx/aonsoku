@@ -75,6 +75,7 @@
     "refresh": "Actualizar listas de reproducción",
     "buttons": {
       "play": "Reproducir {{name}}",
+      "pause": "Pausar {{name}}",
       "shuffle": "Reproducir {{name}} en modo aleatorio",
       "options": "Más opciones para {{name}}"
     },

@@ -108,6 +108,7 @@
     "buttons": {
       "shuffle": "Spela {{name}} i shuffle-läge",
       "play": "Spela {{name}}",
+      "pause": "Pausa {{name}}",
       "options": "Mer inställningar för {{name}}"
     },
     "duration": "Ungefär {{duration}}",

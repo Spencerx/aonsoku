@@ -93,6 +93,7 @@
     "refresh": "Wiedergabelisten aktualisieren",
     "buttons": {
       "play": "{{name}} abspielen",
+      "pause": "{{name}} pausieren",
       "shuffle": "{{name}} im Zufallsmodus abspielen",
       "options": "Weitere Optionen für {{name}}"
     },

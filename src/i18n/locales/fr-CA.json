@@ -533,6 +533,7 @@
     "headline": "Liste de lecture",
     "buttons": {
       "play": "Lire {{name}}",
+      "pause": "Mettre {{name}} en pause",
       "shuffle": "Lire {{name}} en mode aléatoire",
       "options": "Plus d'options pour {{name}}"
     },
