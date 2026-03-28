@@ -964,6 +964,41 @@ export const usePlayerStore = createWithEqualityFn<IPlayerContext>()(
 
               return isActive && isPlaying
             },
+            isArtistActive: (artistId: string) => {
+              const { source } = get().playerState.playbackContext
+
+              if (!source) return false
+
+              return source.type === 'artist' && source.id === artistId
+            },
+            isArtistPlaying: (artistId: string) => {
+              const { source } = get().playerState.playbackContext
+              const { isPlaying } = get().playerState
+
+              if (!source) return false
+
+              const isActive =
+                source.type === 'artist' && source.id === artistId
+
+              return isActive && isPlaying
+            },
+            isAlbumActive: (albumId: string) => {
+              const { source } = get().playerState.playbackContext
+
+              if (!source) return false
+
+              return source.type === 'album' && source.id === albumId
+            },
+            isAlbumPlaying: (albumId: string) => {
+              const { source } = get().playerState.playbackContext
+              const { isPlaying } = get().playerState
+
+              if (!source) return false
+
+              const isActive = source.type === 'album' && source.id === albumId
+
+              return isActive && isPlaying
+            },
           },
         })),
         { name: 'player_store' },

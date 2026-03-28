@@ -3,7 +3,6 @@ import { EqualizerBars } from '@/app/components/icons/equalizer-bars'
 import { Button } from '@/app/components/ui/button'
 import {
   usePlayerActions,
-  usePlayerContext,
   usePlayerIsPlaying,
   usePlayerMediaType,
   usePlayerSonglist,
@@ -20,20 +19,17 @@ export default function PlaySongButton({
   trackId,
   handlePlayButton,
 }: PlaySongButtonProps) {
-  const { checkActiveSong, togglePlayPause } = usePlayerActions()
+  const { checkActiveSong, togglePlayPause, isPlaylistActive, isArtistActive } =
+    usePlayerActions()
   const { isSong, isRadio } = usePlayerMediaType()
   const isPlaying = usePlayerIsPlaying()
   const { radioList, currentSongIndex } = usePlayerSonglist()
-  const { source } = usePlayerContext()
 
   const isCurrentSongPlaying = () => {
     if (isSong) {
-      if (source?.type === 'artist' && source.id === trackId) {
-        return true
-      }
-      if (source?.type === 'playlist' && source.id === trackId) {
-        return true
-      }
+      if (isArtistActive(trackId)) return true
+      if (isPlaylistActive(trackId)) return true
+
       return checkActiveSong(trackId)
     }
     if (isRadio) {
