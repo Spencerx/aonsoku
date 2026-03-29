@@ -11,7 +11,7 @@ import {
 } from '@/app/components/ui/main-sidebar'
 import { useRouteIsActive } from '@/app/hooks/use-route-is-active'
 import { ROUTES } from '@/routes/routesList'
-import { useIsPlaylistPlaying, usePlayerIsPlaying } from '@/store/player.store'
+import { useIsPlaylistPlaying } from '@/store/player.store'
 import { Playlist } from '@/types/responses/playlist'
 
 const MemoContextMenuProvider = memo(ContextMenuProvider)
@@ -23,7 +23,6 @@ interface SidebarPlaylistItemProps {
 
 export function SidebarPlaylistItem({ playlist }: SidebarPlaylistItemProps) {
   const { isOnPlaylist } = useRouteIsActive()
-  const isPlaying = usePlayerIsPlaying()
   const { isPlaylistPlaying } = useIsPlaylistPlaying(playlist.id)
 
   return (
@@ -41,8 +40,8 @@ export function SidebarPlaylistItem({ playlist }: SidebarPlaylistItemProps) {
           asChild
           className={clsx(
             isOnPlaylist(playlist.id) && 'cursor-default',
-            isOnPlaylist(playlist.id) && !isPlaying && 'bg-accent',
-            isPlaylistPlaying && 'text-primary',
+            isOnPlaylist(playlist.id) && !isPlaylistPlaying && 'bg-accent',
+            isPlaylistPlaying && 'text-primary hover:text-primary',
           )}
         >
           <Link
