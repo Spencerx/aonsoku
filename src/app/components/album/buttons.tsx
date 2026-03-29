@@ -49,21 +49,15 @@ export function AlbumButtons({ album, showInfoButton }: AlbumButtonsProps) {
   }
 
   const buttonsTooltips = {
-    play: () => {
-      return isAlbumPlaying
-        ? t('album.buttons.pause', { name: album.name })
-        : t('album.buttons.play', { name: album.name })
-    },
+    play: isAlbumPlaying
+      ? t('album.buttons.pause', { name: album.name })
+      : t('album.buttons.play', { name: album.name }),
     shuffle: t('album.buttons.shuffle', { name: album.name }),
     options: t('playlist.buttons.options', { name: album.name }),
-    like: () => {
-      return isAlbumStarred
-        ? t('album.buttons.dislike', { name: album.name })
-        : t('album.buttons.like', { name: album.name })
-    },
-    info: () => {
-      return showInfoPanel ? t('generic.hideDetails') : t('generic.showDetails')
-    },
+    like: isAlbumStarred
+      ? t('album.buttons.dislike', { name: album.name })
+      : t('album.buttons.like', { name: album.name }),
+    info: showInfoPanel ? t('generic.hideDetails') : t('generic.showDetails'),
   }
 
   const playbackSource: PlaybackSource = {
@@ -91,7 +85,7 @@ export function AlbumButtons({ album, showInfoButton }: AlbumButtonsProps) {
   return (
     <Actions.Container>
       <Actions.Button
-        tooltip={buttonsTooltips.play()}
+        tooltip={buttonsTooltips.play}
         buttonStyle="primary"
         onClick={handlePlayButton}
       >
@@ -108,16 +102,13 @@ export function AlbumButtons({ album, showInfoButton }: AlbumButtonsProps) {
         </Actions.Button>
       )}
 
-      <Actions.Button
-        tooltip={buttonsTooltips.like()}
-        onClick={handleLikeButton}
-      >
+      <Actions.Button tooltip={buttonsTooltips.like} onClick={handleLikeButton}>
         <Actions.LikeIcon isStarred={isAlbumStarred} />
       </Actions.Button>
 
       {showInfoButton && (
         <Actions.Button
-          tooltip={buttonsTooltips.info()}
+          tooltip={buttonsTooltips.info}
           onClick={toggleShowInfoPanel}
         >
           <Actions.InfoIcon />

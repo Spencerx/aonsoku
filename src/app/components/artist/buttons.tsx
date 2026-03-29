@@ -82,21 +82,15 @@ export function ArtistButtons({
   }
 
   const buttonsTooltips = {
-    play: () => {
-      return isArtistPlaying
-        ? t('playlist.buttons.pause', { name: artist.name })
-        : t('playlist.buttons.play', { name: artist.name })
-    },
+    play: isArtistPlaying
+      ? t('playlist.buttons.pause', { name: artist.name })
+      : t('playlist.buttons.play', { name: artist.name }),
     shuffle: t('playlist.buttons.shuffle', { name: artist.name }),
     options: t('playlist.buttons.options', { name: artist.name }),
-    like: () => {
-      return isArtistStarred
-        ? t('album.buttons.dislike', { name: artist.name })
-        : t('album.buttons.like', { name: artist.name })
-    },
-    info: () => {
-      return showInfoPanel ? t('generic.hideDetails') : t('generic.showDetails')
-    },
+    like: isArtistStarred
+      ? t('album.buttons.dislike', { name: artist.name })
+      : t('album.buttons.like', { name: artist.name }),
+    info: showInfoPanel ? t('generic.hideDetails') : t('generic.showDetails'),
   }
 
   if (isArtistEmpty) {
@@ -106,7 +100,7 @@ export function ArtistButtons({
   return (
     <Actions.Container>
       <Actions.Button
-        tooltip={buttonsTooltips.play()}
+        tooltip={buttonsTooltips.play}
         buttonStyle="primary"
         onClick={handlePlayButton}
       >
@@ -121,16 +115,13 @@ export function ArtistButtons({
         <Actions.ShuffleIcon />
       </Actions.Button>
 
-      <Actions.Button
-        tooltip={buttonsTooltips.like()}
-        onClick={handleLikeButton}
-      >
+      <Actions.Button tooltip={buttonsTooltips.like} onClick={handleLikeButton}>
         <Actions.LikeIcon isStarred={isArtistStarred} />
       </Actions.Button>
 
       {showInfoButton && (
         <Actions.Button
-          tooltip={buttonsTooltips.info()}
+          tooltip={buttonsTooltips.info}
           onClick={toggleShowInfoPanel}
         >
           <Actions.InfoIcon />

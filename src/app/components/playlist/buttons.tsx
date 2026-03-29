@@ -24,14 +24,11 @@ export function PlaylistButtons({ playlist }: PlaylistButtonsProps) {
   )
 
   const buttonsTooltips = {
-    play: () => {
-      return isPlaylistPlaying
-        ? t('playlist.buttons.pause', { name: playlist.name })
-        : t('playlist.buttons.play', { name: playlist.name })
-    },
+    play: isPlaylistPlaying
+      ? t('playlist.buttons.pause', { name: playlist.name })
+      : t('playlist.buttons.play', { name: playlist.name }),
     shuffle: t('playlist.buttons.shuffle', { name: playlist.name }),
     options: t('playlist.buttons.options', { name: playlist.name }),
-    pause: t('playlist.buttons.pause', { name: playlist.name }),
   }
 
   const playbackSource: PlaybackSource = {
@@ -59,7 +56,7 @@ export function PlaylistButtons({ playlist }: PlaylistButtonsProps) {
   return (
     <Actions.Container>
       <Actions.Button
-        tooltip={buttonsTooltips.play()}
+        tooltip={buttonsTooltips.play}
         buttonStyle="primary"
         onClick={handlePlayButton}
         disabled={!playlist.entry}
