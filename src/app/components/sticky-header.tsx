@@ -7,7 +7,9 @@ import { getMainScrollElement } from '@/utils/scrollPageToTop'
 import { Actions } from './actions'
 import { ImageLoader } from './image-loader'
 
-type StickyHeaderProps = ComponentPropsWithoutRef<'div'>
+type StickyHeaderProps = ComponentPropsWithoutRef<'div'> & {
+  contentClassName?: string
+}
 
 export const STICKY_HEADER_IMAGE_ID = 'sticky-cover-art-image'
 
@@ -15,6 +17,7 @@ export function StickyHeader({
   children,
   className,
   style,
+  contentClassName,
   ...props
 }: StickyHeaderProps) {
   const [opacity, setOpacity] = useState(0)
@@ -72,7 +75,10 @@ export function StickyHeader({
       >
         <div className="w-full h-shadow-header bg-background/50">
           <div
-            className="flex items-center gap-4 w-full h-shadow-header px-8 transition-opacity duration-500 delay-150"
+            className={cn(
+              'flex items-center gap-4 w-full h-shadow-header px-8 transition-opacity duration-500 delay-150',
+              contentClassName,
+            )}
             style={{ opacity: contentOpacity }}
           >
             {children}
